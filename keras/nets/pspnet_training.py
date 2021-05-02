@@ -132,8 +132,8 @@ class Generator(object):
             name = annotation_line.split()[0]
             
             # 从文件中读取图像
-            jpg = Image.open(r"./dateset/classfication/JPEGImages" + '/' + name + ".jpg")
-            png = Image.open(r"./dateset/classfication/SegmentationClass" + '/' + name + ".png")
+            jpg = Image.open(r"./dataset_processing/classfication/JPEGImages" + '/' + name + ".jpg")
+            png = Image.open(r"./dataset_processing/classfication/SegmentationClass" + '/' + name + ".png")
 
             if random_data:
                 jpg, png = self.get_random_data(jpg, png, (int(self.image_size[0]),int(self.image_size[1])))

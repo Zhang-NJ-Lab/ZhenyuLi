@@ -3,6 +3,7 @@ from keras.layers import *
 from keras.models import *
 
 from nets.mobilenetv2 import get_mobilenet_encoder
+from nets.resnet50 import get_resnet50_encoder
 
 
 IMAGE_ORDERING = 'channels_last'

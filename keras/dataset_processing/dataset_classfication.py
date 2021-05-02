@@ -4,11 +4,9 @@ random.seed(0)
  
 segfilepath=r'./classfication/SegmentationClass'
 saveBasePath=r'./classfication/ImageSets/Segmentation'
- 
-#----------------------------------------------------------------------#
-#   想要增加测试集修改trainval_percent
+
 #   修改train_percent用于改变验证集的比例
-#----------------------------------------------------------------------#
+#   0.9表示90％用于训练模型，10％用于验证
 trainval_percent=1
 train_percent=0.9
 

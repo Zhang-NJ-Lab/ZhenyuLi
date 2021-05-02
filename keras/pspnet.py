@@ -10,14 +10,17 @@ from nets.pspnet import pspnet
 
 class Pspnet(object):
     _defaults = {
-        "model_path"        : 'model/mobilenetv2.h5',
+        #   训练后的模型地址
+        "model_path"        : 'logs/ep100-loss0.798-val_loss0.520.h5',
+        #   model与train中的选择相同
         "backbone"          : "mobilenet",
+        #   与train中的设定参数相同
         "model_image_size"  : (256, 256, 3),
+        #   与train中的设定参数相同
         "num_classes"       : 2,
-        "downsample_factor" : 16,
-        #--------------------------------#
-        #   blend参数用于控制是否让识别结果和原图混合
-        "blend"             : True,
+        #   是否让识别结果和原图混合
+        "blend"            : True,
+        "downsample_factor": 16,
     }
 
 

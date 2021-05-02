@@ -13,10 +13,12 @@ from labelme import utils
 #labelme:3.16
 
 if __name__ == '__main__':
-    jpgs_path = "./JPEGImages"
-    pngs_path = "./SegmentationClass"
-    classes = ["_background_","wood"]
+    jpgs_path = "./classfication/JPEGImages"
+    pngs_path = "./classfication/SegmentationClass"
+    # 修改种类
     # classes = ["_background_","class1","class2"]
+    classes = ["_background_","wood"]
+
 
     count = os.listdir("./before/")
     for i in range(0, len(count)):

@@ -15,31 +15,37 @@ from nets.pspnet_training import CE, Generator, dice_loss_with_CE
 from utils.metrics import Iou_score, f_score
 
 if __name__ == "__main__":     
+    #   模型保存地址
     log_dir = "logs/"
     #   图片格式
     inputs_size = [256,256,3]
-
-    #   分类个数（背景也算一类）
+    #   分类个数（背景也算一个类别）
+    #   num_classes=种类数+1（背景）
     num_classes =2
-
-    dice_loss = False
+    #   model选择：mobilenet，resnet50
+    #   mobilenet（快），resnet50（慢）
     backbone = "mobilenet"
-    aux_branch = False
-    #   下采样的倍数
+    #   损失函数
+    #   种类少（几类）时，设置为True
+    #   种类多（十几类）时，如果batch_size比较大（10以上），那么设置为True
+    #   种类多（十几类）时，如果batch_size比较小（10以下），那么设置为False
+    dice_loss = False
+    #-----------------------------------------------------------#
+
+    aux_branch = True
     downsample_factor = 16
 
-    # 获取model
     model = pspnet(num_classes,inputs_size,downsample_factor=downsample_factor,backbone=backbone,aux_branch=aux_branch)
-
+    # 初始model地址
     model_path = "model/mobilenetv2.h5"
     model.load_weights(model_path, by_name=True, skip_mismatch=True)
 
-    # 打开数据集的txt
-    with open("dateset/classfication/ImageSets/Segmentation/train.txt","r") as f:
+    # 打开训练集
+    with open("dataset_processing/classfication/ImageSets/Segmentation/train.txt","r") as f:
         train_lines = f.readlines()
 
-    # 打开数据集的txt
-    with open("dateset/classfication/ImageSets/Segmentation/val.txt","r") as f:
+    # 打开验证集
+    with open("dataset_processing/classfication/ImageSets/Segmentation/val.txt","r") as f:
         val_lines = f.readlines()
 
 
@@ -106,4 +112,4 @@ if __name__ == "__main__":
                 initial_epoch=Freeze_Epoch,
                 callbacks=[checkpoint_period, reduce_lr,tensorboard])
 
-                
+
